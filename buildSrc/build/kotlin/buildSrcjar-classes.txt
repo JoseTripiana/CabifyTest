@@ -1,0 +1,1 @@
+/Users/josetripiana/workspace/android/CabifyTest/buildSrc/build/classes/kotlin/main/BuildConstants$Classpath.class:/Users/josetripiana/workspace/android/CabifyTest/buildSrc/build/classes/kotlin/main/BuildConstants$MainSettings.class:/Users/josetripiana/workspace/android/CabifyTest/buildSrc/build/classes/kotlin/main/BuildConstants.class
