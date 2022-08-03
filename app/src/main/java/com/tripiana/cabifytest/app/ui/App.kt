@@ -1,9 +1,7 @@
 package com.tripiana.cabifytest.app.ui
 
 import android.app.Application
-import com.tripiana.cabifytest.app.di.apiModule
-import com.tripiana.cabifytest.app.di.appModule
-import com.tripiana.cabifytest.app.di.repositoryModule
+import com.tripiana.cabifytest.app.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -19,7 +17,13 @@ class App: Application() {
             androidLogger(Level.ERROR)
             androidContext(this@App)
             androidFileProperties()
-            modules(appModule, repositoryModule, apiModule)
+            modules(
+                appModule,
+                viewModelModule,
+                mapperModule,
+                repositoryModule,
+                apiModule
+            )
         }
     }
 }

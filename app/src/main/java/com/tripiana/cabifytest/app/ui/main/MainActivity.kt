@@ -1,17 +1,22 @@
 package com.tripiana.cabifytest.app.ui.main
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.tripiana.cabifytest.app.ui.base.BaseActivity
 import com.tripiana.cabifytest.data.repository.network.ProductRepository
 import com.tripiana.cabifytest.databinding.ActivityMainBinding
+import com.tripiana.cabifytest.util.observeOnce
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity: AppCompatActivity() {
+class MainActivity: BaseActivity() {
 
 
     private val binding by lazy {
@@ -20,33 +25,20 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
-    private val repository: ProductRepository by inject()
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
 
-        GlobalScope.launch(Dispatchers.IO){
-            getData()
-        }
-    }
 
-    // OKHttp Test fetching data from url
-    suspend fun getData() {
-//        withContext(Dispatchers.IO) {
-//            val client = OkHttpClient()
-//            val request = okhttp3.Request.Builder()
-//                .url("https://gist.githubusercontent.com/palcalde/6c19259bd32dd6aafa327fa557859c2f/raw/ba51779474a150ee4367cda4f4ffacdcca479887/Products.json")
-//                .build()
-//            val response = client.newCall(request).execute()
-//            val body = response.body?.string()
-//            println("DATA $body")
-//        }
+        viewModel.getProducts().observeOnce(this, getResultObjectObserver({
+            Toast.makeText(this, it.map {product -> product.code }.joinToString(), Toast.LENGTH_LONG).show()
+        }))
 
-        withContext(Dispatchers.IO){
-            val data = repository.getProducts()
-            println("DATA $data")
-        }
+        viewModel.getDiscounts().observeOnce(this, getResultObjectObserver({
+            Toast.makeText(this, it.map {discount -> discount.toString() }.joinToString(), Toast.LENGTH_LONG).show()
+        }))
     }
 }

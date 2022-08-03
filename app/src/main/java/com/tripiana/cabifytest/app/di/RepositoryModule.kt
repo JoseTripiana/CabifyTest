@@ -7,6 +7,8 @@ val repositoryModule = module {
     single{
         ProductRepository(
             get(),
+            get(),
+            get(),
             get()
         )
     }
