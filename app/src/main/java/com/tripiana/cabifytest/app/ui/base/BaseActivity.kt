@@ -1,16 +1,40 @@
 package com.tripiana.cabifytest.app.ui.base
 
+import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.tripiana.cabifytest.R
+import com.tripiana.cabifytest.databinding.ActivityBaseBinding
 import com.tripiana.cabifytest.util.result.ResultObserver
 
 abstract class BaseActivity : AppCompatActivity(), BaseErrorListener {
 
+    private val baseBinding by lazy {
+        ActivityBaseBinding.inflate(layoutInflater).apply {
+            lifecycleOwner = this@BaseActivity
+        }
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        super.setContentView(baseBinding.root)
+    }
+
+    override fun setContentView(view: View?) {
+        baseBinding.baseContainer.addView(view)
+    }
+
+    open fun showLoading() {
+        baseBinding.flLoading.visibility = View.VISIBLE
+    }
+
+    open fun hideLoading(){
+        baseBinding.flLoading.visibility = View.GONE
+    }
 
 
     override fun onError(throwable: Throwable) {
-        //TODO hideLoading
+        hideLoading()
         AlertDialog.Builder(this)
             .setTitle(R.string.error)
             .setMessage(R.string.unexpected_error)

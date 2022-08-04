@@ -1,4 +1,4 @@
-package com.tripiana.cabifytest.util
+package com.tripiana.cabifytest.util.livedata
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData

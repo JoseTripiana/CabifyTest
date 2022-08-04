@@ -1,4 +1,10 @@
 <resources>
     <string name="error">Error</string>
     <string name="unexpected_error">An unexpected error occurred</string>
+    <string name="to_pay">Pay</string>
+    <string name="add_product">Add Product</string>
+    <string name="price_per_unit">Precio por unidad: %d €</string>
+    <string name="units">Units: %d</string>
+    <string name="total_price">Total: %d €</string>
+    <string name="total_saved">Total ahorrado: %d €</string>
 </resources>
