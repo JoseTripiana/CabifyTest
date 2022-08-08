@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.tripiana.cabifytest.R
 import com.tripiana.cabifytest.databinding.ActivityBaseBinding
 import com.tripiana.cabifytest.util.result.ResultObserver
+import org.koin.android.ext.android.inject
 
 abstract class BaseActivity : AppCompatActivity(), BaseErrorListener {
+
+    val navigator by inject<Navigator>()
 
     private val baseBinding by lazy {
         ActivityBaseBinding.inflate(layoutInflater).apply {
@@ -32,16 +35,32 @@ abstract class BaseActivity : AppCompatActivity(), BaseErrorListener {
         baseBinding.flLoading.visibility = View.GONE
     }
 
+    fun showCustomDialog(
+        title: String,
+        description: String,
+        cancelable: Boolean = true,
+        positiveButton: String = getString(android.R.string.ok),
+        positiveListener: (() -> Unit)? = null,
+    ){
+        val dialog = AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(description)
+            .setPositiveButton(positiveButton) { dialog, _ ->
+                positiveListener?.invoke()
+                dialog.dismiss()
+            }
+            .setCancelable(cancelable)
+            .create()
+        dialog.show()
+    }
+
 
     override fun onError(throwable: Throwable) {
         hideLoading()
-        AlertDialog.Builder(this)
-            .setTitle(R.string.error)
-            .setMessage(R.string.unexpected_error)
-            .setPositiveButton(android.R.string.ok){ dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
+        showCustomDialog(
+            title = getString(R.string.error),
+            description = getString(R.string.unexpected_error)
+        )
     }
 
     fun <T> getResultObjectObserver(

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.tripiana.cabifytest.data.repository.network.ProductRepository
 import com.tripiana.cabifytest.domain.model.ProductInfoModel
+import com.tripiana.cabifytest.domain.model.ProductModel
 import com.tripiana.cabifytest.util.result.toResultLiveData
 
 class MainViewModel(
@@ -15,6 +16,8 @@ class MainViewModel(
     var productsInfoEmpty = productsInfoList.map {
         it?.isEmpty()
     }
+
+    val productList = MutableLiveData<List<ProductModel>>()
 
     fun initProducts() = toResultLiveData {
         val productsTypeList = productRepository.getProducts()

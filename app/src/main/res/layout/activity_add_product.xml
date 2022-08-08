@@ -5,9 +5,37 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="com.tripiana.cabifytest.R"/>
+
+
         <variable
             name="productSelected"
-            type="androidx.lifecycle.MutableLiveData&lt;com.tripiana.cabifytest.domain.model.ProductTypeModel>" />
+            type="androidx.lifecycle.MutableLiveData&lt;com.tripiana.cabifytest.domain.model.ProductInfoModel>" />
+
+        <variable
+            name="units"
+            type="androidx.lifecycle.MutableLiveData&lt;Integer>" />
+
+        <variable
+            name="hasTwoForOne"
+            type="androidx.lifecycle.LiveData&lt;Boolean>" />
+
+        <variable
+            name="pricePerUnit"
+            type="androidx.lifecycle.LiveData&lt;Float>" />
+
+        <variable
+            name="total"
+            type="androidx.lifecycle.LiveData&lt;Float>" />
+
+        <variable
+            name="saved"
+            type="androidx.lifecycle.LiveData&lt;Float>" />
+
+        <variable
+            name="handler"
+            type="com.tripiana.cabifytest.app.ui.addproduct.AddProductActivity.ClickHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,10 +63,10 @@
                     android:layout_height="wrap_content"
                     style="@style/Theme.CabifyTest.Text.Description"
                     android:fontFamily="@font/lato_regular"
+                    android:text="@string/product"
                     android:layout_marginStart="4dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="Units"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <EditText
                     android:id="@+id/et_product"
@@ -46,6 +74,7 @@
                     android:layout_height="wrap_content"
                     style="@style/Theme.CabifyTest.EditText.Dropdown"
                     android:text="@{productSelected.name}"
+                    android:onClick="@{() -> handler.onProductClick()}"
                     tools:text="Cabify Voucher"
                     android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@id/tv_product"/>
@@ -55,10 +84,81 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Theme.CabifyTest.Text.Description"
+                    android:text="@string/units"
                     android:fontFamily="@font/lato_regular"
                     android:layout_marginTop="16dp"
+                    android:layout_marginStart="4dp"
                     app:layout_constraintTop_toBottomOf="@id/et_product"
-                    tools:text="Units"/>
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <EditText
+                    android:id="@+id/et_units"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Theme.CabifyTest.EditText"
+                    android:text="@={units}"
+                    android:inputType="number"
+                    tools:text="2"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_units"/>
+
+
+                <TextView
+                    android:id="@+id/tv_ppu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="4dp"
+                    android:visibility="@{pricePerUnit != null}"
+                    android:text="@{context.getString(R.string.price_per_unit, pricePerUnit)}"
+                    style="@style/Theme.CabifyTest.Text.Description"
+                    app:layout_constraintTop_toBottomOf="@id/et_units"
+                    tools:text="Price per unit: 19 €" />
+
+                <TextView
+                    android:id="@+id/tv_two_for_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/two_for_one_applied"
+                    android:visibility="@{hasTwoForOne &amp;&amp; units >= 2}"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="4dp"
+                    style="@style/Theme.CabifyTest.Text.Description"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ppu" />
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="4dp"
+                    style="@style/Theme.CabifyTest.Text.Description"
+                    android:text="@{context.getString(R.string.total_price, total != null ? total : 0)}"
+                    android:fontFamily="@font/lato_regular"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintTop_toBottomOf="@id/tv_two_for_one"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_saved"
+                    tools:text="Total: 90 €" />
+
+
+                <TextView
+                    android:id="@+id/tv_saved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@{context.getString(R.string.total_saved, saved)}"
+                    android:visibility="@{saved != null &amp;&amp; saved > 0}"
+                    style="@style/Theme.CabifyTest.Text.Description"
+                    android:fontFamily="@font/lato_regular"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_two_for_one"
+                    app:layout_constraintStart_toEndOf="@id/tv_total"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="Total ahorrado: 90 €" />
 
 
 
@@ -75,6 +175,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:text="@string/add_product"
+            android:onClick="@{() -> handler.onAddProductClick()}"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

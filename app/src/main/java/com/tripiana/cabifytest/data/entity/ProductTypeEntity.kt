@@ -8,5 +8,5 @@ data class ProductTypeEntity(
     @SerializedName("name")
     val name: String,
     @SerializedName("price")
-    val price: Double
+    val price: Float
 )

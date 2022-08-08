@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.tripiana.cabifytest.R"/>
+        <import type="com.tripiana.cabifytest.domain.model.ProductModel"/>
 
         <variable
             name="item"
@@ -27,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Theme.CabifyTest.Text.Title"
-                android:text="@{item.type.name}"
+                android:text="@{item.product.name}"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Cabify Voucher" />
 
@@ -36,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:text="@{context.getString(R.string.x_units, item.units)}"
                 style="@style/Theme.CabifyTest.Text.Description"
                 app:layout_constraintTop_toBottomOf="@id/tv_name"
                 tools:text="Units: 5" />
@@ -45,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:text="@{item.getPricePerUnitText(context)}"
                 style="@style/Theme.CabifyTest.Text.Description"
                 app:layout_constraintTop_toBottomOf="@id/tv_units"
                 tools:text="Price per unit: 19 €" />
@@ -54,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="@{item.getTotalPriceText(context)}"
                 style="@style/Theme.CabifyTest.Text.Description"
                 android:fontFamily="@font/lato_regular"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -68,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="@{item.getTotalSavedText(context)}"
                 style="@style/Theme.CabifyTest.Text.Description"
                 android:fontFamily="@font/lato_regular"
                 app:layout_constraintHorizontal_bias="1"
