@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.tripiana.cabifytest.domain.model.ProductInfoModel" />
+
+        <variable
+            name="handler"
+            type="com.tripiana.cabifytest.app.ui.addproduct.dialog.ProductBottomSheetDialogListener" />
+
+    </data>
+
+    <TextView
+        style="@style/Theme.CabifyTest.Text.Description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:gravity="center"
+        android:onClick="@{() -> handler.onItemClick(item)}"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@{item.name}"
+        tools:text="Voucher" />
+
+</layout>

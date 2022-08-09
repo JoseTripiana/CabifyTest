@@ -1,0 +1,19 @@
+<resources>
+    <string name="error">Error</string>
+    <string name="unexpected_error">An unexpected error occurred</string>
+    <string name="to_pay">Pay</string>
+    <string name="add_product">Add Product</string>
+    <string name="edit_product">Edit Product</string>
+    <string name="price_per_unit">Price per unit: %.2f €</string>
+    <string name="x_units">Units: %d</string>
+    <string name="total_price">Total: %.2f €</string>
+    <string name="total_saved">Total saved: %.2f €</string>
+    <string name="product">Product</string>
+    <string name="products">Products</string>
+    <string name="units">Units</string>
+    <string name="two_for_one_applied">*** 2x1 applied</string>
+    <string name="must_complete_fields">You must complete all fields</string>
+    <string name="shopping_basket">Shopping basket</string>
+    <string name="no_items_on_basket">You have no items in your basket</string>
+    <string name="purchase_summary">Purchase summary</string>
+</resources>
