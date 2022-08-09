@@ -4,7 +4,7 @@ import com.tripiana.cabifytest.data.repository.network.ProductRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single{
+    single {
         ProductRepository(
             get(),
             get(),

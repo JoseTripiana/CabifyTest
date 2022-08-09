@@ -5,9 +5,9 @@ import com.tripiana.cabifytest.domain.model.DiscountModel
 
 class DiscountMapper(
     private val bulkDiscountMapper: BulkDiscountMapper
-): BaseMapper<DiscountEntity, DiscountModel> {
+) : BaseMapper<DiscountEntity, DiscountModel> {
     override fun toModel(entity: DiscountEntity): DiscountModel =
-        with(entity){
+        with(entity) {
             DiscountModel(
                 code,
                 hasTwoForOneDisccount,

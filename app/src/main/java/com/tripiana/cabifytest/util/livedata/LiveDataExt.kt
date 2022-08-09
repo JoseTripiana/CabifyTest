@@ -1,4 +1,4 @@
-package com.tripiana.cabifytest.util
+package com.tripiana.cabifytest.util.livedata
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
     observe(
         lifecycleOwner,
-        object: Observer<T> {
+        object : Observer<T> {
             override fun onChanged(t: T?) {
                 observer.onChanged(t)
                 removeObserver(this)

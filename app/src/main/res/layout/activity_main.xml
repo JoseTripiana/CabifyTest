@@ -1,17 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.tripiana.cabifytest.R" />
+
+        <variable
+            name="productsInfoEmpty"
+            type="androidx.lifecycle.LiveData&lt;Boolean>" />
+
+        <variable
+            name="productsEmpty"
+            type="androidx.lifecycle.LiveData&lt;Boolean>" />
+
+        <variable
+            name="totalPrice"
+            type="androidx.lifecycle.LiveData&lt;Float>" />
+
+        <variable
+            name="totalSaved"
+            type="androidx.lifecycle.LiveData&lt;Float>" />
+
+        <variable
+            name="handler"
+            type="com.tripiana.cabifytest.app.ui.main.MainActivity.ClickHandler" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_gray"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_16dp"
+            android:backgroundTint="@color/white"
+            android:clipToPadding="false"
+            android:outlineProvider="bounds"
+            android:overScrollMode="never"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:visibility="@{!productsEmpty}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/fav_add"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_total"
+            style="@style/Theme.CabifyTest.Text.Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@{context.getString(R.string.total_price, totalPrice != null ? totalPrice : 0)}"
+            app:layout_constraintBottom_toTopOf="@id/tv_saved"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Total: 50€" />
+
+        <TextView
+            android:id="@+id/tv_saved"
+            style="@style/Theme.CabifyTest.Text.Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@{context.getString(R.string.total_saved, totalSaved)}"
+            android:visibility="@{totalSaved != null &amp;&amp; totalSaved > 0}"
+            app:layout_constraintBottom_toTopOf="@id/btn_pay"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Total saved: 50€" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fav_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/add_product"
+            android:onClick="@{() -> handler.onAddProductClick()}"
+            android:visibility="@{!productsInfoEmpty}"
+            app:layout_constraintBottom_toTopOf="@id/btn_pay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/icn_fab_add" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_pay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Hello world"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="36dp"
+            android:onClick="@{() -> handler.onPayClicked()}"
+            android:text="@string/to_pay"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

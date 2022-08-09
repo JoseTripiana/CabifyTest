@@ -1,9 +1,9 @@
-package com.tripiana.cabifytest.data.repository.network.request
+package com.tripiana.cabifytest.data.repository.network.response
 
 import com.google.gson.annotations.SerializedName
 import com.tripiana.cabifytest.data.entity.DiscountEntity
 
-data class DiscountsRequest(
+data class DiscountsResponse(
     @SerializedName("discounts")
     val discounts: List<DiscountEntity>
 )

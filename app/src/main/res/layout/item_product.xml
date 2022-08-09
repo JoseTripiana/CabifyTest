@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.tripiana.cabifytest.R" />
+
+        <import type="com.tripiana.cabifytest.domain.model.ProductModel" />
+
+        <variable
+            name="item"
+            type="com.tripiana.cabifytest.domain.model.ProductModel" />
+
+        <variable
+            name="handler"
+            type="com.tripiana.cabifytest.app.ui.main.ProductListHandler" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{() -> handler.onItemClick(item)}"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/Theme.CabifyTest.Text.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@{item.product.name}"
+                app:layout_constraintEnd_toStartOf="@id/iv_delete"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Cabify Voucher" />
+
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> handler.onDeleteClick(item)}"
+                android:src="@drawable/icn_delete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_units"
+                style="@style/Theme.CabifyTest.Text.Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{context.getString(R.string.x_units, item.units)}"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                tools:text="Units: 5" />
+
+            <TextView
+                android:id="@+id/tv_ppu"
+                style="@style/Theme.CabifyTest.Text.Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{item.getPricePerUnitText(context)}"
+                app:layout_constraintTop_toBottomOf="@id/tv_units"
+                tools:text="Price per unit: 19 €" />
+
+            <TextView
+                android:id="@+id/tv_total"
+                style="@style/Theme.CabifyTest.Text.Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_regular"
+                android:text="@{item.getTotalPriceText(context)}"
+                app:layout_constraintEnd_toStartOf="@id/tv_saved"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_ppu"
+                tools:text="Total: 90 €" />
+
+
+            <TextView
+                android:id="@+id/tv_saved"
+                style="@style/Theme.CabifyTest.Text.Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_regular"
+                android:text="@{item.getTotalSavedText(context)}"
+                android:visibility="@{item.getTotalSaved() > 0}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@id/tv_total"
+                app:layout_constraintTop_toBottomOf="@id/tv_ppu"
+                tools:text="Total ahorrado: 90 €" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

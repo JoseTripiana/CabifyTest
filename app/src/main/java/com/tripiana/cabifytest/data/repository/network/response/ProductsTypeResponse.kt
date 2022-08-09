@@ -1,9 +1,9 @@
-package com.tripiana.cabifytest.data.repository.network.request
+package com.tripiana.cabifytest.data.repository.network.response
 
 import com.google.gson.annotations.SerializedName
 import com.tripiana.cabifytest.data.entity.ProductTypeEntity
 
-data class ProductsTypeRequest(
+data class ProductsTypeResponse(
     @SerializedName("products")
     val products: List<ProductTypeEntity>
 )

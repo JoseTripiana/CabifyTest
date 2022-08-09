@@ -21,6 +21,15 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    signingConfigs {
+        create("release"){
+            storePassword = "G289qJ5gj7k3UugteDav"
+            keyPassword = "G289qJ5gj7k3UugteDav"
+            storeFile = file("../keystore/release.keystore")
+            keyAlias = "release"
+        }
+    }
+
     buildTypes {
         getByName("debug") {
             isMinifyEnabled = false
@@ -28,14 +37,22 @@ android {
         }
         getByName("release") {
             isMinifyEnabled = true
+            isJniDebuggable = true
+            isRenderscriptDebuggable = true
             manifestPlaceholders["crashlyticsEnabled"] = true
             isShrinkResources = true
+
+            signingConfig = signingConfigs.getByName("release")
 
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+    }
+
+    lint {
+        disable.add("NullSafeMutableLiveData")
     }
 
     buildFeatures {

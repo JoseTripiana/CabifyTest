@@ -20,7 +20,7 @@ fun <T> toResultLiveData(
     timeoutInMs: Long = DEFAULT_TIMEOUT,
     closure: suspend () -> T
 ): LiveData<ResultObject<T>> {
-    return liveData(context, timeoutInMs){
+    return liveData(context, timeoutInMs) {
         emit(toResult(closure))
     }
 }

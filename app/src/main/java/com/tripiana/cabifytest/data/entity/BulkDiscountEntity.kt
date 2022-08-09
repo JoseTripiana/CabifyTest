@@ -6,13 +6,5 @@ data class BulkDiscountEntity(
     @SerializedName("units")
     val units: Int,
     @SerializedName("price")
-    val price: Double
+    val price: Float
 )
-
-//TODO borrar
-/*
-*
-*
-
-*
-* */
