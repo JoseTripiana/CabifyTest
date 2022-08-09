@@ -7,7 +7,7 @@ import com.tripiana.cabifytest.domain.model.ProductInfoModel
 
 class ProductDialogAdapter(
     private val handler: ProductBottomSheetDialogListener
-): BaseDiffAdapter<ProductInfoModel>() {
+) : BaseDiffAdapter<ProductInfoModel>() {
     override fun getLayout(viewType: Int): Int = R.layout.item_product_dialog
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {

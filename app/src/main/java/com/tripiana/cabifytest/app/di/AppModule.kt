@@ -5,7 +5,6 @@ import com.tripiana.cabifytest.app.ui.base.Navigator
 import com.tripiana.cabifytest.data.repository.network.config.BaseRetrofitCall
 import com.tripiana.cabifytest.data.repository.network.config.RetrofitFactory
 import org.koin.dsl.module
-import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
@@ -15,9 +14,9 @@ val appModule = module {
     }
 
     single {
-       RetrofitFactory.getFactory(
-           converterFactory = GsonConverterFactory.create(get())
-       ).getRetrofit()
+        RetrofitFactory.getFactory(
+            converterFactory = GsonConverterFactory.create(get())
+        ).getRetrofit()
     }
 
     single {

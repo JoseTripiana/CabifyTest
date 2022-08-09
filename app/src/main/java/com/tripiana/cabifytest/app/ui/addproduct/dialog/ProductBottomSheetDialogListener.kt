@@ -6,7 +6,7 @@ import com.tripiana.cabifytest.domain.model.ProductInfoModel
 class ProductBottomSheetDialogListener(
     val dialog: ProductBottomSheetDialog,
     val listener: (ProductInfoModel) -> Unit
-): BaseClickHandler<ProductInfoModel> {
+) : BaseClickHandler<ProductInfoModel> {
     override fun onItemClick(item: ProductInfoModel) {
         listener(item)
         dialog.dismiss()

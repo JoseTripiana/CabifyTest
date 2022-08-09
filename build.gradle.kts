@@ -2,9 +2,8 @@ buildscript {
     repositories {
         mavenCentral()
         google()
-        maven {
-            url = uri("https://plugins.gradle.org/m2/")
-        }
+        maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri("https://maven.fabric.io/public") }
     }
 
     dependencies {
@@ -13,7 +12,12 @@ buildscript {
     }
 
     allprojects {
-
+        repositories {
+            mavenCentral()
+            google()
+            maven { url = uri("https://plugins.gradle.org/m2/") }
+            maven { url = uri("https://maven.fabric.io/public") }
+        }
     }
 
     tasks.register("clean", Delete::class) {

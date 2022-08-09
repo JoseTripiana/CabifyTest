@@ -2,10 +2,10 @@ package com.tripiana.cabifytest.util.view
 
 import android.content.res.Resources
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
+import com.tripiana.cabifytest.util.ext.isInt
 
 @BindingAdapter("android:visibility", "invisible", requireAll = false)
 fun View.setVisibility(value: Boolean?, invisible: Boolean?) {

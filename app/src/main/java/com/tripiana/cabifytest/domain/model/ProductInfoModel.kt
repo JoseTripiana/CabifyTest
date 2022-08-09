@@ -10,7 +10,7 @@ data class ProductInfoModel(
     val name: String,
     val price: Float,
     val discounts: DiscountModel? = null
-): Parcelable, Idable {
+) : Parcelable, Idable {
 
     companion object {
         fun createProductInfoModel(

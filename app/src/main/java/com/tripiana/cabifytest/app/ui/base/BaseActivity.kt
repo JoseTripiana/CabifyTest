@@ -18,6 +18,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseErrorListener {
             lifecycleOwner = this@BaseActivity
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         super.setContentView(baseBinding.root)
@@ -31,7 +32,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseErrorListener {
         baseBinding.flLoading.visibility = View.VISIBLE
     }
 
-    open fun hideLoading(){
+    open fun hideLoading() {
         baseBinding.flLoading.visibility = View.GONE
     }
 
@@ -41,7 +42,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseErrorListener {
         cancelable: Boolean = true,
         positiveButton: String = getString(android.R.string.ok),
         positiveListener: (() -> Unit)? = null,
-    ){
+    ) {
         val dialog = AlertDialog.Builder(this)
             .setTitle(title)
             .setMessage(description)
@@ -57,6 +58,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseErrorListener {
 
     override fun onError(throwable: Throwable) {
         hideLoading()
+        throwable.printStackTrace()
         showCustomDialog(
             title = getString(R.string.error),
             description = getString(R.string.unexpected_error)

@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="color_loading_bkg">#10FFFFFF</color>
-    <color name="color_edit_text_bkg">#F4F4F4</color>
+    <color name="color_gray">#F4F4F4</color>
 </resources>

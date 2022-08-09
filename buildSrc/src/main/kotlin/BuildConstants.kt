@@ -14,9 +14,6 @@ object BuildConstants {
         val appCompatVersion = "1.4.1"
         add("androidx.appcompat:appcompat:$appCompatVersion")
 
-        val timber = "5.0.1"
-        add("com.jakewharton.timber:timber:$timber")
-
         val ktxCore = "1.7.0"
         add("androidx.core:core-ktx:$ktxCore")
 

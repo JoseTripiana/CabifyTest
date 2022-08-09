@@ -4,6 +4,7 @@
     <string name="unexpected_error">Ocurrió un error inesperado</string>
     <string name="to_pay">Pagar</string>
     <string name="add_product">Añadir producto</string>
+    <string name="edit_product">Editar Producto</string>
     <string name="price_per_unit">Precio por unidad: %.2f €</string>
     <string name="x_units">Units: %d</string>
     <string name="total_price">Total: %.2f €</string>
@@ -13,4 +14,7 @@
     <string name="units">Unidades</string>
     <string name="two_for_one_applied">*** 2x1 aplicado</string>
     <string name="must_complete_fields">Debe completar todos los campos</string>
+    <string name="shopping_basket">Cesta de la compra</string>
+    <string name="no_items_on_basket">No tienes productos en tu cesta</string>
+    <string name="purchase_summary">Resumen de compra</string>
 </resources>

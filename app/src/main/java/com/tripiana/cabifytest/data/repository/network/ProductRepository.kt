@@ -6,7 +6,6 @@ import com.tripiana.cabifytest.data.repository.network.api.ProductApi
 import com.tripiana.cabifytest.data.repository.network.config.BaseRetrofitCall
 import com.tripiana.cabifytest.domain.model.DiscountModel
 import com.tripiana.cabifytest.domain.model.ProductTypeModel
-import retrofit2.Retrofit
 
 class ProductRepository(
     private val baseRetrofitCall: BaseRetrofitCall,

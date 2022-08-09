@@ -8,4 +8,4 @@ data class DiscountModel(
     val code: String,
     val hasTwoForOneDisccount: Boolean,
     val bulkDiscounts: List<BulkDiscountModel>
-): Parcelable
+) : Parcelable

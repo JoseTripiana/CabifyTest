@@ -7,4 +7,4 @@ import kotlinx.parcelize.Parcelize
 data class BulkDiscountModel(
     val units: Int,
     val price: Float
-): Parcelable
+) : Parcelable

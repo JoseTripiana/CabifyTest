@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseDiffAdapter<K: Idable>(
+abstract class BaseDiffAdapter<K : Idable>(
     var data: MutableList<K> = mutableListOf()
-): RecyclerView.Adapter<BaseDiffAdapter.BaseViewHolder>() {
+) : RecyclerView.Adapter<BaseDiffAdapter.BaseViewHolder>() {
 
     @LayoutRes
     abstract fun getLayout(viewType: Int): Int
@@ -24,6 +24,16 @@ abstract class BaseDiffAdapter<K: Idable>(
         BaseViewHolder(LayoutInflater.from(parent.context).inflate(getLayout(viewType), parent, false))
 
     override fun getItemCount(): Int = data.size
+
+    override fun onViewAttachedToWindow(holder: BaseViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.onAttach()
+    }
+
+    override fun onViewDetachedFromWindow(holder: BaseViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.onDetach()
+    }
 
     open fun update(newList: List<K>) {
         val diffResult = DiffUtil.calculateDiff(BaseDiff(newList, data))

@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.ui.addproduct.AddProductActivity"/>
+        <activity android:name=".app.ui.addproduct.ProductDetailActivity"/>
 
     </application>
 

@@ -12,13 +12,13 @@ class BaseRetrofitCall(
     ): T =
         try {
             call().let { response ->
-                if(response.isSuccessful && response.body() != null) {
+                if (response.isSuccessful && response.body() != null) {
                     response.body()!!
                 } else {
                     throw Exception()
                 }
             }
-        } catch(e: RetrofitIOException){
+        } catch (e: RetrofitIOException) {
             throw e.cause ?: e
         }
 }

@@ -19,3 +19,13 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepnames class androidx.lifecycle.ViewModel
+-keepclassmembers class * extends androidx.lifecycle.ViewModel { <init>(...); }
+-keepclassmembers class * implements androidx.lifecycle.LifecycleObserver { <init>(...); }
+-keepclassmembers class * implements androidx.lifecycle.LifecycleOwner { <init>(...); }
+-keepclassmembers class androidx.lifecycle.Lifecycle$State { *; }
+-keepclassmembers class androidx.lifecycle.Lifecycle$Event { *; }
+-keep class * implements androidx.lifecycle.LifecycleOwner { public <init>(...); }
+-keep class * implements androidx.lifecycle.LifecycleObserver { public <init>(...); }
+-keepclassmembers class * { public <init>(...); }

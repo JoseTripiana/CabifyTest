@@ -5,20 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.tripiana.cabifytest.app.ui.base.adapter.BaseClickHandler
 import com.tripiana.cabifytest.databinding.DialogProductBottomSheetBinding
 import com.tripiana.cabifytest.domain.model.ProductInfoModel
 
 class ProductBottomSheetDialog(
     private val list: List<ProductInfoModel>,
     private val listener: (ProductInfoModel) -> Unit
-): BottomSheetDialogFragment() {
+) : BottomSheetDialogFragment() {
 
     private val binding by lazy {
         DialogProductBottomSheetBinding.inflate(layoutInflater).apply {
             lifecycleOwner = this@ProductBottomSheetDialog
         }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return binding.root
     }
@@ -32,7 +32,7 @@ class ProductBottomSheetDialog(
                 listener
             )
         )
-        with(binding.recyclerView){
+        with(binding.recyclerView) {
             adapter = productAdapter
         }
         productAdapter.update(list)

@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.tripiana.cabifytest.domain.model.ProductInfoModel
-import com.tripiana.cabifytest.domain.model.ProductModel
 
-class AddProductViewModel : ViewModel() {
+class ProductDetailViewModel : ViewModel() {
 
     val productInfoModelList = mutableListOf<ProductInfoModel>()
 
@@ -33,7 +32,7 @@ class AddProductViewModel : ViewModel() {
             postValue(getPricePerUnit(currentProduct, currentUnits, hasTwoForOne))
         }
 
-        addSource(this@AddProductViewModel.hasTwoForOne) {
+        addSource(this@ProductDetailViewModel.hasTwoForOne) {
             hasTwoForOne = it
             postValue(getPricePerUnit(currentProduct, currentUnits, hasTwoForOne))
         }
@@ -48,7 +47,7 @@ class AddProductViewModel : ViewModel() {
             postValue(pricePerUnit?.times(it.toFloat()) ?: 0f)
         }
 
-        addSource(this@AddProductViewModel.pricePerUnit) {
+        addSource(this@ProductDetailViewModel.pricePerUnit) {
             pricePerUnit = it
             postValue(currentUnits?.toFloat()?.times(it) ?: 0f)
         }
@@ -68,7 +67,7 @@ class AddProductViewModel : ViewModel() {
             postValue(getSaved(currentProduct, currentUnits, pricePerUnit))
         }
 
-        addSource(this@AddProductViewModel.pricePerUnit){
+        addSource(this@ProductDetailViewModel.pricePerUnit) {
             pricePerUnit = it
             postValue(getSaved(currentProduct, currentUnits, pricePerUnit))
         }
@@ -77,7 +76,7 @@ class AddProductViewModel : ViewModel() {
     private fun getPricePerUnit(currentProduct: ProductInfoModel?, currentUnits: Int?, hasTwoForOne: Boolean?): Float {
         return if (currentUnits != null && currentUnits > 0) {
             val twoForOneTimes = if (hasTwoForOne == true) (currentUnits / 2) else 0
-            val newPricePerUnit = currentProduct?.discounts?.bulkDiscounts?.maxByOrNull { bulkDiscount -> bulkDiscount.units < (currentUnits ?: 0) }?.price ?: currentProduct?.price ?: 0f
+            val newPricePerUnit = currentProduct?.discounts?.bulkDiscounts?.maxByOrNull { bulkDiscount -> bulkDiscount.units < currentUnits }?.price ?: currentProduct?.price ?: 0f
             ((currentUnits - twoForOneTimes) * newPricePerUnit) / currentUnits
         } else
             0f
